@@ -6,6 +6,8 @@ import (
 	"fmt"
 	"io"
 	"net"
+	"net/http"
+	"net/url"
 	"reflect"
 	"strconv"
 	"strings"
@@ -90,4 +92,9 @@ func (s *SHOUTcastSource) Start() error {
 // SetInput pipes an io.Reader as the source of the stream
 func (s *SHOUTcastSource) SetInput(r io.Reader) {
 	s.tcpConn.ReadFrom(r)
+}
+
+// SetMetatata allows you to set the song and DJ name
+func (s *SHOUTcastSource) SetMetatata(title, djname string) {
+	http.Get("http://" + s.host + ":" + strconv.Itoa(s.port) + "admin.cgi?mode=updinfo&pass=" + url.QueryEscape(s.password) + "&song=" + url.QueryEscape(title) + "&djname=" + url.QueryEscape(djname))
 }
