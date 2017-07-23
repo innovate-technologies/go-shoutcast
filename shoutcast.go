@@ -96,5 +96,5 @@ func (s *SHOUTcastSource) SetInput(r io.Reader) {
 
 // SetMetatata allows you to set the song and DJ name
 func (s *SHOUTcastSource) SetMetatata(title, djname string) {
-	http.Get("http://" + s.host + ":" + strconv.Itoa(s.port) + "admin.cgi?mode=updinfo&pass=" + url.QueryEscape(s.password) + "&song=" + url.QueryEscape(title) + "&djname=" + url.QueryEscape(djname))
+	http.Get("http://" + s.host + ":" + strconv.Itoa(s.port) + "/admin.cgi?mode=updinfo&pass=" + url.QueryEscape(s.password) + "&song=" + url.QueryEscape(title) + "&djname=" + url.QueryEscape(djname))
 }
