@@ -90,8 +90,8 @@ func (s *SHOUTcastSource) Start() error {
 }
 
 // SetInput pipes an io.Reader as the source of the stream
-func (s *SHOUTcastSource) SetInput(r io.Reader) {
-	s.tcpConn.ReadFrom(r)
+func (s *SHOUTcastSource) SetInput(r io.Reader) (int64, error) {
+	return s.tcpConn.ReadFrom(r)
 }
 
 // SetMetatata allows you to set the song and DJ name
